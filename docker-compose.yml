@@ -1,16 +1,14 @@
-mysql:
-  image: mysql:5.7
-  environment:
-    MYSQL_ROOT_PASSWORD: pass
-  volumes:
-    - ./my.cnf:/etc/mysql/conf.d/my.cnf
-  container_name: mysql
-php:
-  build: .
-  ports:
-    - "80:80"
-  volumes:
-    - ./www:/var/www/html
-  links:
-    - mysql:mysql
-  container_name: php
+version: '2'
+services:
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+  php:
+    build: ./php
+    ports:
+      - '80:80'
+    volumes:
+      - ./html:/var/www/html
+    depends_on:
+      - mysql
