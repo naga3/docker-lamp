@@ -14,5 +14,13 @@ services:
       - ./html:/var/www/html
     depends_on:
       - mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - 8080:80
+    links:
+        - mysql
+    environment:
+        PMA_HOST: mysql
 volumes:
   db:
