@@ -6,6 +6,9 @@ services:
       MYSQL_ROOT_PASSWORD: pass
     volumes:
       - db:/var/lib/mysql
+      - ../bk:/tmp
+    ports:
+      - '3366:3306'
   php:
     build: ./php
     ports:
